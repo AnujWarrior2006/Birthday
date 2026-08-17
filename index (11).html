@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>A Little Surprise for Titiksha 💗</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,500&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root{
+  --cream:#FFF8F3;
+  --blush:#FFD9E3;
+  --soft-pink:#FFB9CB;
+  --peach:#FFCDA6;
+  --white:#FFFFFF;
+  --rose:#E75C77;
+  --rose-deep:#C93F5C;
+  --gold:#E4B454;
+  --mystery-purple:#9B7EDE;
+  --mystery-deep:#6A4C93;
+  --ink:#4B3A46;
+  --ink-soft:#8A6E7C;
+  --sticker-small:100px;
+  --sticker-medium:150px;
+  --sticker-large:200px;
+  --font-display:'Fraunces', Georgia, serif;
+  --font-body:'Quicksand', 'Segoe UI', sans-serif;
+  --shadow-soft:0 20px 60px rgba(199,90,120,0.18);
+  --glass-bg:rgba(255,255,255,0.55);
+  --glass-border:rgba(255,255,255,0.65);
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--font-body);
+  color:var(--ink);
+  background:var(--cream);
+  overflow-x:hidden;
+  min-height:100vh;
+}
+h1,h2,h3{font-family:var(--font-display); font-weight:600; letter-spacing:.2px;}
+button{font-family:var(--font-body); cursor:pointer; border:none; outline:none;}
+button:focus-visible, input:focus-visible, textarea:focus-visible{
+  outline:3px solid var(--gold); outline-offset:2px;
+}
+img{max-width:100%; display:block;}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important;}
+}
+
+/* ============================================================
+   AMBIENT BACKGROUND LAYER (hearts / sparkles / petals)
+   ============================================================ */
+#ambientLayer{
+  position:fixed; inset:0; pointer-events:none; z-index:45; overflow:hidden;
+}
+
+#muteBtn{
+  position:fixed; top:18px; right:18px; z-index:999;
+  width:48px; height:48px; border-radius:50%;
+  background:var(--glass-bg); border:1px solid var(--glass-border);
+  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  box-shadow:0 8px 22px rgba(199,90,120,0.25);
+  font-size:1.25rem; display:flex; align-items:center; justify-content:center;
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+#muteBtn:hover{ transform:translateY(-2px) scale(1.06); box-shadow:0 12px 26px rgba(199,90,120,0.35); }
+#muteBtn:active{ transform:scale(.94); }
+@media (max-width:600px){
+  #muteBtn{ top:12px; right:12px; width:42px; height:42px; font-size:1.1rem; }
+}
+.ambient-item{
+  position:absolute; top:-40px; opacity:0.8; will-change:transform;
+  animation-name:driftDown; animation-timing-function:ease-in-out; animation-iteration-count:infinite;
+  filter:drop-shadow(0 3px 5px rgba(180,80,110,0.18));
+}
+@keyframes driftDown{
+  0%{ transform:translateY(-5vh) translateX(0) rotate(0deg); }
+  20%{ transform:translateY(18vh) translateX(calc(var(--drift,20px) * 0.5)) rotate(72deg); }
+  40%{ transform:translateY(40vh) translateX(calc(var(--drift,20px) * -0.4)) rotate(150deg); }
+  60%{ transform:translateY(62vh) translateX(calc(var(--drift,20px) * 0.6)) rotate(230deg); }
+  80%{ transform:translateY(85vh) translateX(calc(var(--drift,20px) * -0.2)) rotate(300deg); }
+  100%{ transform:translateY(110vh) translateX(var(--drift,20px)) rotate(360deg); }
+}
+
+/* ============================================================
+   SCREEN / STAGE MANAGEMENT
+   ============================================================ */
+.screen{
+  display:none;
+  min-height:100vh;
+  width:100%;
+  position:relative;
+  align-items:center;
+  justify-content:center;
+  padding:32px 18px;
+  z-index:2;
+}
+.screen.active{ display:flex; }
+.screen.fade-in{ animation:screenFadeIn .7s ease both; }
+.screen.fade-out{ animation:screenFadeOut .45s ease both; }
+@keyframes screenFadeIn{
+  from{ opacity:0; transform:translateY(18px) scale(.98); }
+  to{ opacity:1; transform:translateY(0) scale(1); }
+}
+@keyframes screenFadeOut{
+  from{ opacity:1; transform:translateY(0) scale(1); }
+  to{ opacity:0; transform:translateY(-14px) scale(.98); }
+}
+
+.bg-lock, .bg-gift, .bg-penguin{
+  background:radial-gradient(circle at 20% 20%, var(--blush), transparent 55%),
+             radial-gradient(circle at 85% 80%, var(--peach), transparent 55%),
+             linear-gradient(160deg, #fff0f4 0%, #ffe6ec 45%, #ffd9e3 100%);
+}
+.bg-mystery{
+  background:radial-gradient(circle at 25% 30%, rgba(155,126,222,0.55), transparent 55%),
+             radial-gradient(circle at 80% 75%, rgba(233,180,84,0.25), transparent 50%),
+             linear-gradient(160deg, #2a1f3d 0%, #3c2a56 55%, #4a2f4f 100%);
+  color:#f4ecff;
+}
+
+/* Glass card */
+.glass-card{
+  background:var(--glass-bg);
+  border:1px solid var(--glass-border);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-radius:28px;
+  box-shadow:var(--shadow-soft);
+  padding:42px 32px;
+  max-width:560px;
+  width:100%;
+  text-align:center;
+  position:relative;
+}
+.bg-mystery .glass-card{
+  background:rgba(60,42,86,0.55);
+  border:1px solid rgba(220,200,255,0.25);
+  box-shadow:0 20px 60px rgba(90,50,140,0.45);
+}
+
+.eyebrow{
+  font-size:.8rem; letter-spacing:2px; text-transform:uppercase;
+  color:var(--rose); font-weight:700; margin-bottom:10px;
+}
+.bg-mystery .eyebrow{ color:#d6bbff; }
+
+.title-xl{ font-size:clamp(1.7rem, 5vw, 2.4rem); margin-bottom:12px; color:var(--ink); }
+.bg-mystery .title-xl{ color:#fdf6ff; }
+.subtitle{ font-size:1.02rem; color:var(--ink-soft); margin-bottom:8px; line-height:1.55; }
+.bg-mystery .subtitle{ color:#e4d7fb; }
+
+/* Sticker placeholders */
+.sticker-slot{
+  display:flex; align-items:center; justify-content:center;
+  margin:0 auto 18px;
+  filter:drop-shadow(0 8px 18px rgba(200,90,120,0.25));
+}
+.sticker-slot img{ width:100%; height:100%; object-fit:contain; }
+.sticker-slot.small{ width:var(--sticker-small); height:var(--sticker-small); }
+.sticker-slot.medium{ width:var(--sticker-medium); height:var(--sticker-medium); }
+.sticker-slot.large{ width:var(--sticker-large); height:var(--sticker-large); }
+.sticker-fallback{ font-size:3rem; }
+
+/* Buttons */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding:14px 30px; border-radius:999px; font-weight:700; font-size:1rem;
+  transition:transform .25s ease, box-shadow .25s ease; user-select:none;
+}
+.btn-primary{
+  background:linear-gradient(135deg, var(--rose), var(--rose-deep));
+  color:#fff; box-shadow:0 12px 26px rgba(216,70,100,0.35);
+}
+.btn-primary:hover{ transform:translateY(-3px) scale(1.03); box-shadow:0 16px 32px rgba(216,70,100,0.45); }
+.btn-secondary{
+  background:#fff; color:var(--rose-deep); border:2px solid var(--soft-pink);
+}
+.btn-secondary:hover{ transform:translateY(-3px); background:var(--blush); }
+.btn-ghost{
+  background:transparent; color:var(--ink-soft); text-decoration:underline; padding:8px 14px;
+}
+.btn-mystery{
+  background:linear-gradient(135deg, var(--mystery-purple), var(--mystery-deep));
+  color:#fff; box-shadow:0 12px 28px rgba(120,80,190,0.5);
+}
+.btn-mystery:hover{ transform:translateY(-3px) scale(1.03); }
+.btn-row{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:22px; }
+.btn:active{ transform:scale(.97); }
+
+/* Lock screen specific */
+.lock-icon{
+  font-size:3.4rem; margin-bottom:6px;
+  animation:gentleFloat 3.4s ease-in-out infinite;
+  filter:drop-shadow(0 6px 14px rgba(216,70,100,.35));
+}
+@keyframes gentleFloat{ 0%,100%{ transform:translateY(0) rotate(-2deg);} 50%{ transform:translateY(-10px) rotate(2deg);} }
+
+.birthday-input-wrap{ margin:22px 0 6px; }
+#birthdayInput{
+  width:180px; max-width:100%; text-align:center; font-size:1.6rem; letter-spacing:4px;
+  padding:14px 10px; border-radius:16px; border:2px solid var(--soft-pink);
+  background:rgba(255,255,255,0.85); color:var(--ink); font-family:var(--font-body); font-weight:700;
+  transition:border-color .2s ease;
+}
+#birthdayInput:focus{ border-color:var(--rose); }
+.lock-feedback{
+  min-height:26px; margin-top:12px; font-weight:600; color:var(--rose-deep);
+  animation:none;
+}
+.shake{ animation:shakeCard .5s ease; }
+@keyframes shakeCard{
+  10%,90%{ transform:translateX(-2px); }
+  20%,80%{ transform:translateX(4px); }
+  30%,50%,70%{ transform:translateX(-8px); }
+  40%,60%{ transform:translateX(8px); }
+}
+
+/* Gift question */
+.gift-box-anim{ font-size:4rem; margin-bottom:8px; display:inline-block; transition:transform .4s ease; }
+.gift-box-anim.opened{ transform:scale(1.25) rotate(-6deg); }
+.no-btn-wobble{ animation:wobble .5s ease; }
+@keyframes wobble{
+  0%,100%{ transform:rotate(0); } 25%{ transform:rotate(-6deg); } 75%{ transform:rotate(6deg); }
+}
+
+/* Modal (No / Gift content) */
+.modal-overlay{
+  position:fixed; inset:0; background:rgba(60,30,45,0.45); backdrop-filter:blur(6px);
+  display:none; align-items:center; justify-content:center; z-index:50; padding:20px;
+}
+.modal-overlay.active{ display:flex; animation:overlayFade .3s ease; }
+@keyframes overlayFade{ from{opacity:0;} to{opacity:1;} }
+.modal-box{
+  background:#fff; border-radius:26px; max-width:480px; width:100%; padding:34px 28px;
+  text-align:center; box-shadow:0 30px 70px rgba(0,0,0,0.28);
+  animation:modalPop .35s cubic-bezier(.2,1.4,.4,1) both;
+  max-height:88vh; overflow-y:auto;
+}
+@keyframes modalPop{ from{ opacity:0; transform:scale(.85) translateY(14px);} to{ opacity:1; transform:scale(1) translateY(0);} }
+.modal-box textarea{
+  width:100%; min-height:90px; margin:16px 0; padding:12px 14px; border-radius:14px;
+  border:2px solid var(--blush); font-family:var(--font-body); font-size:.95rem; resize:vertical;
+}
+.modal-box textarea:focus{ border-color:var(--rose); }
+
+/* Penguins */
+.penguin-row{
+  display:flex; gap:26px; justify-content:center; flex-wrap:wrap; margin:28px 0 10px;
+}
+.penguin-card{
+  background:rgba(255,255,255,0.6); border-radius:24px; padding:20px 16px 14px;
+  width:150px; cursor:pointer; border:1px solid rgba(255,255,255,0.7);
+  transition:transform .3s ease, box-shadow .3s ease; position:relative;
+  backdrop-filter:blur(10px);
+}
+.penguin-card:hover{ transform:translateY(-10px); box-shadow:0 18px 30px rgba(216,90,120,.25); }
+.penguin-card:hover .penguin{ transform:translateY(-4px) rotate(-2deg); }
+.penguin-card:hover .mini-heart{ opacity:1; transform:translateY(-14px); }
+.penguin-card.opened{ opacity:.55; }
+.penguin-card.opened::after{
+  content:'✓ Opened'; position:absolute; top:8px; right:10px; font-size:.7rem;
+  background:var(--rose); color:#fff; padding:3px 9px; border-radius:999px; font-weight:700;
+}
+.penguin{ width:90px; height:100px; margin:0 auto; position:relative; transition:transform .35s ease; }
+.penguin-body{
+  position:absolute; bottom:0; left:50%; transform:translateX(-50%);
+  width:74px; height:80px; background:#3b3242; border-radius:48% 48% 55% 55% / 55% 55% 45% 45%;
+}
+.penguin-belly{
+  position:absolute; bottom:0; left:50%; transform:translateX(-50%);
+  width:46px; height:60px; background:#fff; border-radius:50% 50% 55% 55% / 60% 60% 50% 50%;
+}
+.penguin-eye{ position:absolute; top:26px; width:7px; height:9px; background:#2a2330; border-radius:50%; }
+.penguin-eye.left{ left:28px; } .penguin-eye.right{ right:28px; }
+.penguin-blush{ position:absolute; top:37px; width:9px; height:6px; background:#ffb0c0; border-radius:50%; opacity:.85; }
+.penguin-blush.left{ left:20px; } .penguin-blush.right{ right:20px; }
+.penguin-beak{
+  position:absolute; top:34px; left:50%; transform:translateX(-50%);
+  width:0; height:0; border-left:6px solid transparent; border-right:6px solid transparent;
+  border-top:8px solid #f2a53c;
+}
+.penguin-foot{ position:absolute; bottom:-6px; width:16px; height:8px; background:#f2a53c; border-radius:8px; }
+.penguin-foot.left{ left:16px; } .penguin-foot.right{ right:16px; }
+.penguin-gift-icon{
+  position:absolute; bottom:2px; right:-6px; font-size:1.1rem;
+  filter:drop-shadow(0 3px 4px rgba(0,0,0,.2));
+}
+.penguin.shy .penguin-blush{ opacity:1; width:11px; height:8px; }
+.penguin.playful .penguin-body{ transform:translateX(-50%) rotate(-4deg); }
+.mini-heart{
+  position:absolute; top:-6px; right:6px; font-size:.9rem; opacity:0; transition:all .35s ease;
+}
+.penguin-label{ margin-top:10px; font-weight:700; font-size:.95rem; }
+.penguin-sub{ font-size:.78rem; color:var(--ink-soft); }
+
+.progress-row{ display:flex; gap:10px; justify-content:center; margin:18px 0; flex-wrap:wrap; }
+.progress-pill{
+  font-size:.8rem; font-weight:700; padding:6px 14px; border-radius:999px;
+  background:rgba(255,255,255,.55); color:var(--ink-soft); border:1px solid var(--blush);
+  transition:all .3s ease;
+}
+.progress-pill.done{ background:var(--rose); color:#fff; border-color:var(--rose); }
+
+/* Gift modal content styling */
+.letter-card{ text-align:left; font-size:.98rem; line-height:1.7; color:var(--ink); white-space:pre-line; }
+.reason-cards{ display:grid; gap:10px; margin:16px 0; text-align:left; }
+.reason-cards div{ background:var(--blush); padding:10px 14px; border-radius:12px; font-weight:600; }
+.big-heart{ font-size:3.4rem; text-align:center; animation:pulseHeart 1.6s ease-in-out infinite; }
+@keyframes pulseHeart{ 0%,100%{ transform:scale(1);} 50%{ transform:scale(1.15);} }
+
+/* Mystery typewriter */
+.mystery-text{ text-align:left; font-size:1.02rem; line-height:1.85; min-height:120px; }
+.mystery-text strong{ color:#ffd479; }
+.mystery-line{ opacity:0; }
+.mystery-line.shown{ opacity:1; animation:fadeUp .6s ease both; }
+@keyframes fadeUp{ from{ opacity:0; transform:translateY(8px);} to{ opacity:1; transform:translateY(0);} }
+.magnify-float{ font-size:2.6rem; animation:gentleFloat 4s ease-in-out infinite; }
+
+/* ============================================================
+   MAIN WEBSITE
+   ============================================================ */
+#mainWebsite{ display:none; flex-direction:column; width:100%; }
+#mainWebsite.active{ display:flex; }
+.section{
+  width:100%; padding:90px 20px; position:relative; z-index:2;
+  display:flex; flex-direction:column; align-items:center; text-align:center;
+}
+.section-inner{ max-width:880px; width:100%; }
+.section-alt{ background:linear-gradient(180deg, #fff7f2, #ffeef2); }
+.section-cream{ background:var(--cream); }
+
+.hero-section{
+  min-height:100vh; background:radial-gradient(circle at 30% 20%, var(--blush), transparent 60%),
+    radial-gradient(circle at 75% 75%, var(--peach), transparent 55%), var(--cream);
+  justify-content:center;
+}
+.hero-cake{ font-size:4.2rem; margin-bottom:6px; animation:gentleFloat 3.6s ease-in-out infinite; }
+.bouquet-wrap{ display:flex; justify-content:center; margin:4px auto 10px; animation:bouquetSway 4.5s ease-in-out infinite; filter:drop-shadow(0 10px 16px rgba(199,90,120,0.22)); }
+@keyframes bouquetSway{ 0%,100%{ transform:rotate(-2deg); } 50%{ transform:rotate(2deg); } }
+.hero-title{ font-size:clamp(2.2rem, 7vw, 4rem); color:var(--rose-deep); margin-bottom:10px; }
+.hero-sub{ font-size:1.15rem; color:var(--ink-soft); margin-bottom:6px; }
+
+.section-title{ font-size:clamp(1.7rem, 5vw, 2.5rem); margin-bottom:26px; color:var(--rose-deep); }
+
+.reveal{ opacity:0; transform:translateY(30px); transition:opacity .8s ease, transform .8s ease; }
+.reveal.in-view{ opacity:1; transform:translateY(0); }
+
+.card-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:18px; margin-top:10px; text-align:left; }
+.feel-card{
+  background:#fff; border-radius:22px; padding:24px 20px; box-shadow:0 14px 30px rgba(216,90,120,.12);
+  transition:transform .3s ease;
+}
+.feel-card:hover{ transform:translateY(-6px); }
+.feel-card h3{ font-size:1.1rem; margin-bottom:8px; color:var(--rose-deep); }
+.feel-card p{ color:var(--ink-soft); font-size:.95rem; line-height:1.5; }
+
+.emailjs-form{ text-align:left; max-width:480px; margin:0 auto; }
+.emailjs-form label{ display:block; font-weight:700; font-size:.88rem; margin:14px 0 6px; color:var(--ink); }
+.emailjs-form input, .emailjs-form textarea{
+  width:100%; padding:12px 14px; border-radius:14px; border:2px solid var(--blush);
+  font-family:var(--font-body); font-size:.95rem; background:#fff;
+}
+.emailjs-form textarea{ min-height:110px; resize:vertical; }
+.form-status{ margin-top:14px; font-weight:600; min-height:22px; font-size:.9rem; }
+.form-status.ok{ color:#2c8a5b; }
+.form-status.err{ color:var(--rose-deep); }
+
+.music-toggle{ font-size:1rem; padding:14px 26px; }
+
+.one-more-thing{ cursor:pointer; }
+.one-more-reveal{ margin-top:18px; text-align:left; font-size:1rem; line-height:1.8; display:none; }
+.one-more-reveal.shown{ display:block; animation:fadeUp .8s ease both; }
+
+.final-section{
+  background:linear-gradient(160deg,#3c2a3f,#5a2f45 60%, #E75C77);
+  color:#fff; min-height:70vh;
+}
+.final-section .subtitle{ color:#ffe3ea; }
+.signature{ margin-top:24px; font-family:var(--font-display); font-style:italic; font-size:1.15rem; }
+
+footer.tiny{ text-align:center; padding:18px; font-size:.75rem; color:var(--ink-soft); }
+.bg-mystery footer.tiny, .final-section + footer.tiny{ color:#e4d7fb; }
+
+@media (max-width:600px){
+  .glass-card{ padding:30px 20px; }
+  .penguin-row{ gap:16px; }
+  .penguin-card{ width:44%; min-width:140px; }
+  .section{ padding:64px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div id="ambientLayer" aria-hidden="true"></div>
+<!-- Hidden background music player (YouTube embed, no visible UI) -->
+<div id="spotifyMusicPlayer" style="position:fixed; width:1px; height:1px; opacity:0; pointer-events:none; overflow:hidden;" aria-hidden="true"></div>
+<button id="muteBtn" aria-label="Mute background music" title="Mute music">🔊</button>
+
+<!-- ============================================================
+     1. LOCK SCREEN
+     ============================================================ -->
+<section id="lockScreen" class="screen active bg-lock">
+  <div class="glass-card">
+    <!-- STICKER PLACEHOLDER: Add your sticker here (lock) -->
+    <div class="sticker-slot medium" id="stickerLock"><span class="sticker-fallback">🔐</span></div>
+    <div class="eyebrow">Just for you, Titiksha</div>
+    <div class="lock-icon">🔐</div>
+    <h1 class="title-xl">A Little Surprise Awaits...</h1>
+    <p class="subtitle">Before you enter, prove that you're the birthday girl. 👀❤️</p>
+    <p class="subtitle" style="font-weight:700; color:var(--rose-deep);">When's your birthday, Titiksha?</p>
+
+    <div class="birthday-input-wrap">
+      <input type="text" id="birthdayInput" placeholder="DD-MM" maxlength="5" inputmode="numeric" autocomplete="off" aria-label="Enter your birthday as DD-MM">
+    </div>
+    <div class="lock-feedback" id="lockFeedback" role="status" aria-live="polite"></div>
+    <div class="btn-row">
+      <button class="btn btn-primary" id="unlockBtn">Unlock My Surprise 🔓</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     2. GIFT QUESTION
+     ============================================================ -->
+<section id="giftScreen" class="screen bg-gift">
+  <div class="glass-card">
+    <!-- STICKER PLACEHOLDER: Add your sticker here (gift question) -->
+    <div class="sticker-slot medium" id="stickerGift"><span class="sticker-fallback">🎁</span></div>
+    <p class="subtitle" style="font-weight:700;">Wait... there's one more thing 👀</p>
+    <div class="gift-box-anim" id="giftBoxAnim">🎁</div>
+    <h1 class="title-xl">Will you accept my gift? 🎁❤️</h1>
+    <p class="subtitle">Choose wisely, Titiksha... 😌</p>
+    <div class="btn-row">
+      <button class="btn btn-primary" id="yesBtn">YES ❤️</button>
+      <button class="btn btn-secondary" id="noBtn">NO 🙈</button>
+    </div>
+    <p class="lock-feedback" id="giftFeedback" role="status" aria-live="polite"></p>
+  </div>
+</section>
+
+<!-- NO Modal -->
+<div class="modal-overlay" id="noModalOverlay" role="dialog" aria-modal="true" aria-labelledby="noModalTitle">
+  <div class="modal-box">
+    <!-- STICKER PLACEHOLDER: Add your sticker here (no reaction) -->
+    <div class="sticker-slot small" id="stickerNo" style="margin-bottom:10px;"><span class="sticker-fallback">🥺</span></div>
+    <h2 id="noModalTitle" style="font-size:1.3rem; margin-bottom:6px;">Wait... why did you click No? 🥺</h2>
+    <p class="subtitle" style="margin-top:10px;">Why did you click no?</p>
+    <textarea id="noReasonInput" placeholder="Tell Anuj why... 👀" aria-label="Tell Anuj why"></textarea>
+    <div class="btn-row" style="margin-top:4px;">
+      <button class="btn btn-primary" id="tryAgainBtn">Try Again 💗</button>
+    </div>
+    <p class="form-status" id="noReasonStatus" role="status" aria-live="polite"></p>
+  </div>
+</div>
+
+<!-- ============================================================
+     3. PENGUIN GIFTS
+     ============================================================ -->
+<section id="penguinScreen" class="screen bg-penguin">
+  <div class="glass-card" style="max-width:680px;">
+    <!-- STICKER PLACEHOLDER: Add your sticker here (penguin page) -->
+    <div class="sticker-slot medium" id="stickerPenguin"><span class="sticker-fallback">🐧</span></div>
+    <h1 class="title-xl">Yayyy! You accepted my gift! 🥹❤️</h1>
+    <p class="subtitle">But... I have 3 little gifts for you. 🐧🎁</p>
+    <p class="subtitle" style="font-weight:700;">Which one will you open first?</p>
+
+    <div class="penguin-row">
+      <div class="penguin-card" data-gift="gift1" tabindex="0" role="button" aria-label="Open gift one">
+        <div class="penguin happy">
+          <div class="penguin-body"></div>
+          <div class="penguin-belly"></div>
+          <div class="penguin-eye left"></div><div class="penguin-eye right"></div>
+          <div class="penguin-blush left"></div><div class="penguin-blush right"></div>
+          <div class="penguin-beak"></div>
+          <div class="penguin-foot left"></div><div class="penguin-foot right"></div>
+          <div class="penguin-gift-icon">🎁</div>
+          <div class="mini-heart">💗</div>
+        </div>
+        <div class="penguin-label">Gift 1 🎁</div>
+        <div class="penguin-sub">A little message</div>
+      </div>
+
+      <div class="penguin-card" data-gift="gift2" tabindex="0" role="button" aria-label="Open gift two">
+        <div class="penguin playful">
+          <div class="penguin-body"></div>
+          <div class="penguin-belly"></div>
+          <div class="penguin-eye left"></div><div class="penguin-eye right"></div>
+          <div class="penguin-blush left"></div><div class="penguin-blush right"></div>
+          <div class="penguin-beak"></div>
+          <div class="penguin-foot left"></div><div class="penguin-foot right"></div>
+          <div class="penguin-gift-icon">🎁</div>
+          <div class="mini-heart">✨</div>
+        </div>
+        <div class="penguin-label">Gift 2 🎁</div>
+        <div class="penguin-sub">A sweet surprise</div>
+      </div>
+
+      <div class="penguin-card" data-gift="gift3" tabindex="0" role="button" aria-label="Open gift three">
+        <div class="penguin shy">
+          <div class="penguin-body"></div>
+          <div class="penguin-belly"></div>
+          <div class="penguin-eye left"></div><div class="penguin-eye right"></div>
+          <div class="penguin-blush left"></div><div class="penguin-blush right"></div>
+          <div class="penguin-beak"></div>
+          <div class="penguin-foot left"></div><div class="penguin-foot right"></div>
+          <div class="penguin-gift-icon">🎁</div>
+          <div class="mini-heart">❤️</div>
+        </div>
+        <div class="penguin-label">Gift 3 🎁</div>
+        <div class="penguin-sub">Something romantic</div>
+      </div>
+    </div>
+
+    <div class="progress-row">
+      <span class="progress-pill" id="pillGift1">Gift 1</span>
+      <span class="progress-pill" id="pillGift2">Gift 2</span>
+      <span class="progress-pill" id="pillGift3">Gift 3</span>
+    </div>
+
+    <p class="subtitle" id="giftHint">Open all three gifts to discover the final clue... 🕵️‍♀️</p>
+    <div class="btn-row">
+      <button class="btn btn-mystery" id="revealClueBtn" style="display:none;">Reveal the Final Clue 🕵️‍♀️</button>
+    </div>
+  </div>
+</section>
+
+<!-- Gift content modal (reused for gift1/2/3) -->
+<div class="modal-overlay" id="giftModalOverlay" role="dialog" aria-modal="true" aria-labelledby="giftModalTitle">
+  <div class="modal-box" id="giftModalBox">
+    <!-- content injected by JS -->
+  </div>
+</div>
+
+<!-- ============================================================
+     4. FINAL MYSTERY
+     ============================================================ -->
+<section id="mysteryScreen" class="screen bg-mystery">
+  <div class="glass-card" style="max-width:640px;">
+    <div class="magnify-float">🔍</div>
+    <!-- STICKER PLACEHOLDER: Add your sticker here (romantic / mystery) -->
+    <div class="sticker-slot small" id="stickerRomantic" style="margin:6px auto;"></div>
+    <div id="mysteryIntro">
+      <p class="subtitle" id="mysteryPre1" style="color:#f4ecff; font-weight:700;"></p>
+    </div>
+    <div class="mystery-text" id="mysteryText"></div>
+    <div class="btn-row" id="mysteryBtnRow" style="display:none;">
+      <button class="btn btn-mystery" id="knowWhoBtn">I Think I Know Who... 👀</button>
+    </div>
+    <div id="mysteryFollowUp" style="display:none; margin-top:16px;">
+      <p class="subtitle" style="color:#f4ecff;">Well... I wonder who that could be. 😌❤️</p>
+      <p class="subtitle" style="color:#e4d7fb;">Maybe the answer is closer than you think.</p>
+      <div class="btn-row">
+        <button class="btn btn-primary" id="continueToMainBtn">Continue to the Birthday Surprise ✨</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     5. MAIN BIRTHDAY WEBSITE
+     ============================================================ -->
+<main id="mainWebsite">
+
+  <!-- HERO -->
+  <section class="section hero-section">
+    <div class="section-inner">
+      <div class="hero-cake">🎂</div>
+      <!-- Decorative bouquet: lotus + sunflowers (hand-drawn SVG, no external assets needed) -->
+      <div class="bouquet-wrap" aria-hidden="true">
+        <svg viewBox="0 0 300 320" width="230" height="245">
+          <defs>
+            <radialGradient id="lotusGrad" cx="50%" cy="30%" r="75%">
+              <stop offset="0%" stop-color="#FFE3EF"/>
+              <stop offset="55%" stop-color="#FFB3CE"/>
+              <stop offset="100%" stop-color="#E8749B"/>
+            </radialGradient>
+            <radialGradient id="sunflowerGrad" cx="50%" cy="30%" r="75%">
+              <stop offset="0%" stop-color="#FFE382"/>
+              <stop offset="60%" stop-color="#F6C445"/>
+              <stop offset="100%" stop-color="#E8A93A"/>
+            </radialGradient>
+          </defs>
+
+          <!-- Ribbon bow -->
+          <g transform="translate(150,286)">
+            <path d="M0,0 L-26,-16 L-30,5 Z" fill="#E4B454"/>
+            <path d="M0,0 L26,-16 L30,5 Z" fill="#E4B454"/>
+            <circle cx="0" cy="-2" r="7" fill="#D89A34"/>
+          </g>
+
+          <!-- Stems -->
+          <path d="M150,288 C130,250 100,190 80,132" stroke="#5C8A54" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M150,288 C140,240 128,170 118,118" stroke="#5C8A54" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M150,288 C150,238 150,166 150,108" stroke="#5C8A54" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M150,288 C158,240 178,172 184,124" stroke="#5C8A54" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M150,288 C165,246 200,196 222,128" stroke="#5C8A54" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M150,288 C172,250 218,208 240,146" stroke="#5C8A54" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M150,288 C120,254 92,214 72,168" stroke="#5C8A54" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <!-- Leaves -->
+          <ellipse cx="104" cy="212" rx="13" ry="5.5" fill="#6DA163" transform="rotate(-38,104,212)"/>
+          <ellipse cx="150" cy="220" rx="13" ry="5.5" fill="#6DA163" transform="rotate(4,150,220)"/>
+          <ellipse cx="198" cy="214" rx="13" ry="5.5" fill="#6DA163" transform="rotate(38,198,214)"/>
+          <ellipse cx="86" cy="190" rx="11" ry="4.5" fill="#7CB56E" transform="rotate(-55,86,190)"/>
+          <ellipse cx="222" cy="188" rx="11" ry="4.5" fill="#7CB56E" transform="rotate(55,222,188)"/>
+
+          <!-- Reusable flower templates via <use> would need separate defs; petals are drawn per-flower below -->
+
+          <!-- Lotus (front-left) -->
+          <g transform="translate(80,128) scale(0.92)">
+            <ellipse cx="0" cy="-16" rx="7" ry="18" fill="url(#lotusGrad)" transform="rotate(0)"/>
+            <ellipse cx="0" cy="-16" rx="7" ry="18" fill="url(#lotusGrad)" transform="rotate(45)"/>
+            <ellipse cx="0" cy="-16" rx="7" ry="18" fill="url(#lotusGrad)" transform="rotate(90)"/>
+            <ellipse cx="0" cy="-16" rx="7" ry="18" fill="url(#lotusGrad)" transform="rotate(135)"/>
+            <ellipse cx="0" cy="-16" rx="7" ry="18" fill="url(#lotusGrad)" transform="rotate(180)"/>
+            <ellipse cx="0" cy="-16" rx="7" ry="18" fill="url(#lotusGrad)" transform="rotate(225)"/>
+            <ellipse cx="0" cy="-16" rx="7" ry="18" fill="url(#lotusGrad)" transform="rotate(270)"/>
+            <ellipse cx="0" cy="-16" rx="7" ry="18" fill="url(#lotusGrad)" transform="rotate(315)"/>
+            <circle cx="0" cy="0" r="6" fill="#FFD9E8"/>
+          </g>
+
+          <!-- Lotus (front-center, largest) -->
+          <g transform="translate(150,116) scale(1.08)">
+            <ellipse cx="0" cy="-16" rx="7" ry="18" fill="url(#lotusGrad)" transform="rotate(0)"/>
+            <ellipse cx="0" cy="-16" rx="7" ry="18" fill="url(#lotusGrad)" transform="rotate(45)"/>
+            <ellipse cx="0" cy="-16" rx="7" ry="18" fill="url(#lotusGrad)" transform="rotate(90)"/>
+            <ellipse cx="0" cy="-16" rx="7" ry="18" fill="url(#lotusGrad)" transform="rotate(135)"/>
+            <ellipse cx="0" cy="-16" rx="7" ry="18" fill="url(#lotusGrad)" transform="rotate(180)"/>
+            <ellipse cx="0" cy="-16" rx="7" ry="18" fill="url(#lotusGrad)" transform="rotate(225)"/>
+            <ellipse cx="0" cy="-16" rx="7" ry="18" fill="url(#lotusGrad)" transform="rotate(270)"/>
+            <ellipse cx="0" cy="-16" rx="7" ry="18" fill="url(#lotusGrad)" transform="rotate(315)"/>
+            <circle cx="0" cy="0" r="6.5" fill="#FFD9E8"/>
+          </g>
+
+          <!-- Lotus (front-right) -->
+          <g transform="translate(222,134) scale(0.88)">
+            <ellipse cx="0" cy="-16" rx="7" ry="18" fill="url(#lotusGrad)" transform="rotate(0)"/>
+            <ellipse cx="0" cy="-16" rx="7" ry="18" fill="url(#lotusGrad)" transform="rotate(45)"/>
+            <ellipse cx="0" cy="-16" rx="7" ry="18" fill="url(#lotusGrad)" transform="rotate(90)"/>
+            <ellipse cx="0" cy="-16" rx="7" ry="18" fill="url(#lotusGrad)" transform="rotate(135)"/>
+            <ellipse cx="0" cy="-16" rx="7" ry="18" fill="url(#lotusGrad)" transform="rotate(180)"/>
+            <ellipse cx="0" cy="-16" rx="7" ry="18" fill="url(#lotusGrad)" transform="rotate(225)"/>
+            <ellipse cx="0" cy="-16" rx="7" ry="18" fill="url(#lotusGrad)" transform="rotate(270)"/>
+            <ellipse cx="0" cy="-16" rx="7" ry="18" fill="url(#lotusGrad)" transform="rotate(315)"/>
+            <circle cx="0" cy="0" r="6" fill="#FFD9E8"/>
+          </g>
+
+          <!-- Sunflower (back-left) -->
+          <g transform="translate(80,84) scale(0.85)">
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(0)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(30)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(60)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(90)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(120)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(150)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(180)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(210)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(240)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(270)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(300)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(330)"/>
+            <circle cx="0" cy="0" r="9" fill="#6B4423"/>
+            <circle cx="-3" cy="-2" r="1.1" fill="#4A2E17"/><circle cx="3" cy="-1" r="1.1" fill="#4A2E17"/>
+            <circle cx="0" cy="3" r="1.1" fill="#4A2E17"/><circle cx="-2" cy="4" r="1" fill="#4A2E17"/>
+            <circle cx="3" cy="3" r="1" fill="#4A2E17"/>
+          </g>
+
+          <!-- Sunflower (back-center, tallest) -->
+          <g transform="translate(150,66) scale(1.05)">
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(0)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(30)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(60)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(90)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(120)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(150)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(180)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(210)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(240)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(270)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(300)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(330)"/>
+            <circle cx="0" cy="0" r="9.5" fill="#6B4423"/>
+            <circle cx="-3" cy="-2" r="1.2" fill="#4A2E17"/><circle cx="3" cy="-1" r="1.2" fill="#4A2E17"/>
+            <circle cx="0" cy="3" r="1.2" fill="#4A2E17"/><circle cx="-2" cy="4" r="1" fill="#4A2E17"/>
+            <circle cx="3" cy="3" r="1" fill="#4A2E17"/>
+          </g>
+
+          <!-- Sunflower (back-right) -->
+          <g transform="translate(220,86) scale(0.85)">
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(0)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(30)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(60)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(90)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(120)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(150)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(180)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(210)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(240)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(270)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(300)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(330)"/>
+            <circle cx="0" cy="0" r="9" fill="#6B4423"/>
+            <circle cx="-3" cy="-2" r="1.1" fill="#4A2E17"/><circle cx="3" cy="-1" r="1.1" fill="#4A2E17"/>
+            <circle cx="0" cy="3" r="1.1" fill="#4A2E17"/><circle cx="-2" cy="4" r="1" fill="#4A2E17"/>
+            <circle cx="3" cy="3" r="1" fill="#4A2E17"/>
+          </g>
+
+          <!-- Sunflower (side-right, small) -->
+          <g transform="translate(244,124) scale(0.68)">
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(0)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(30)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(60)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(90)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(120)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(150)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(180)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(210)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(240)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(270)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(300)"/>
+            <ellipse cx="0" cy="-15" rx="4.5" ry="14" fill="url(#sunflowerGrad)" transform="rotate(330)"/>
+            <circle cx="0" cy="0" r="9" fill="#6B4423"/>
+            <circle cx="-3" cy="-2" r="1" fill="#4A2E17"/><circle cx="3" cy="-1" r="1" fill="#4A2E17"/>
+            <circle cx="0" cy="3" r="1" fill="#4A2E17"/>
+          </g>
+        </svg>
+      </div>
+      <!-- STICKER PLACEHOLDER: Add your sticker here (hero) -->
+      <div class="sticker-slot medium" id="stickerHero" style="margin:0 auto 14px;"></div>
+      <h1 class="hero-title">Happy Birthday, Titiksha ❤️</h1>
+      <p class="hero-sub">Today is all about you.</p>
+      <p class="hero-sub">A little surprise from Anuj ✨</p>
+      <div class="btn-row">
+        <a href="#messageSection" class="btn btn-primary" id="openSurpriseBtn">Open Your Surprise 💌</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PERSONAL MESSAGE -->
+  <section class="section section-alt" id="messageSection">
+    <div class="section-inner reveal">
+      <!-- STICKER PLACEHOLDER: Add your sticker here (romantic message) -->
+      <div class="sticker-slot small" id="stickerMessage" style="margin:0 auto 14px;"></div>
+      <h2 class="section-title">Hey Titiksha ❤️</h2>
+      <div class="glass-card" style="background:#fff;">
+        <p class="letter-card">Happy Birthday to someone who makes ordinary moments feel a little more special.
+
+I hope today brings you the same happiness, smiles, and warmth that you bring to the people around you.
+
+You deserve all the beautiful things life has to offer.
+
+Keep smiling, keep shining, and most importantly, keep being the amazing person you are.
+
+I'm really glad I get to know someone like you. ❤️
+
+Happy Birthday, Titiksha. ✨</p>
+        <p class="signature">With lots of love,<br>Anuj ❤️</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROMANTIC CARDS -->
+  <section class="section section-cream">
+    <div class="section-inner reveal">
+      <h2 class="section-title">A Few Little Things ❤️</h2>
+      <div class="card-grid">
+        <div class="feel-card"><h3>❤️ Your Smile</h3><p>Honestly, it has a way of making everything feel better.</p></div>
+        <div class="feel-card"><h3>✨ Your Vibe</h3><p>There's something about you that's just effortlessly special.</p></div>
+        <div class="feel-card"><h3>🌸 Your Heart</h3><p>Kind, beautiful, and genuinely precious.</p></div>
+        <div class="feel-card"><h3>💗 You</h3><p>Simply you. And that's more than enough.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WISHES -->
+  <section class="section section-cream">
+    <div class="section-inner reveal">
+      <h2 class="section-title">My Wishes For You 🎁</h2>
+      <div class="card-grid">
+        <div class="feel-card"><h3>🎂 Happiness</h3><p>May you always have reasons to smile.</p></div>
+        <div class="feel-card"><h3>🌟 Dreams</h3><p>May the things you dream about slowly become reality.</p></div>
+        <div class="feel-card"><h3>🌸 Beautiful Moments</h3><p>May life give you countless moments worth remembering.</p></div>
+        <div class="feel-card"><h3>❤️ Love</h3><p>May you always be surrounded by people who genuinely care about you.</p></div>
+        <div class="feel-card"><h3>✨ Everything Good</h3><p>Because you deserve it.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ONE MORE THING -->
+  <section class="section section-alt">
+    <div class="section-inner reveal">
+      <div class="glass-card one-more-thing" id="oneMoreThingCard" style="background:#fff;">
+        <h2 class="section-title" style="margin-bottom:6px;">One More Thing... 💗</h2>
+        <p class="subtitle" id="oneMoreHint">(tap to open)</p>
+        <div class="one-more-reveal" id="oneMoreReveal">
+          <p>Titiksha...</p><br>
+          <p>I don't know what the future holds, but I'm really happy that you're a part of my present. ❤️</p><br>
+          <p>Happy Birthday once again. Keep smiling, beautiful. ✨</p><br>
+          <p class="signature">— Anuj ❤️</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL SECTION -->
+  <section class="section final-section">
+    <div class="section-inner reveal">
+      <!-- STICKER PLACEHOLDER: Add your sticker here (final section) -->
+      <div class="sticker-slot medium" id="stickerFinal" style="margin:0 auto 14px;"></div>
+      <h1 class="title-xl" style="color:#fff; font-size:clamp(1.9rem,6vw,3rem);">Happy Birthday, Titiksha ❤️</h1>
+      <p class="subtitle">Here's to more smiles, more laughter, more memories, and maybe a little more of us. ✨</p>
+      <p class="signature">Made with lots of love,<br>Anuj ❤️</p>
+    </div>
+  </section>
+
+  <!-- REVIEW / LEAVE A NOTE -->
+  <section class="section section-cream">
+    <div class="section-inner reveal">
+      <h2 class="section-title">Leave a Little Review 💌</h2>
+      <p class="subtitle" style="margin-bottom:18px;">Tell Anuj what you thought of your surprise... 👀❤️</p>
+      <form class="emailjs-form" id="reviewForm">
+        <label for="reviewName">Your name</label>
+        <input type="text" id="reviewName" required placeholder="Titiksha">
+        <label for="reviewMessage">Your review</label>
+        <textarea id="reviewMessage" required placeholder="What did you think? 🥹💗"></textarea>
+        <div class="btn-row" style="justify-content:flex-start;">
+          <button class="btn btn-primary" type="submit" id="reviewSubmitBtn">Send Review 💌</button>
+        </div>
+        <p class="form-status" id="reviewStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <footer class="tiny">A little birthday adventure, made with 💗 by Anuj.</footer>
+</main>
+
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+
+<script>
+// ========================================
+// WEBSITE CONFIGURATION
+// ========================================
+
+// Birthday lock (format DD-MM)
+const CORRECT_BIRTHDAY = "20-08";
+
+// EmailJS
+const EMAILJS_PUBLIC_KEY = "vWNccQwQDQrjMe5x4";
+const EMAILJS_SERVICE_ID = "service_fjqq9or";
+const EMAILJS_TEMPLATE_ID = "template_oo25xza";
+// Recipient is configured in the EmailJS template's "To Email" field, not here.
+// This placeholder is only used as a template parameter fallback — it is never shown on the site.
+const ANUJ_EMAIL = "YOUR_EMAIL_HERE";
+
+// Background music (Spotify). Only the track URI is needed.
+// From: https://open.spotify.com/track/0uROb6x5IunKokDggpmwKz
+const SPOTIFY_TRACK_URI = "spotify:track:0uROb6x5IunKokDggpmwKz";
+
+// Photos
+
+// Stickers
+const stickers = {
+    lock: "stickers/sticker1.png",
+    gift: "stickers/sticker2.png",
+    noReaction: "stickers/sticker3.png",
+    hero: "stickers/sticker4.png",
+    romantic: "stickers/sticker5.png",
+    final: "stickers/sticker6.png",
+    penguin: "stickers/penguin-sticker.png"
+};
+
+// ========================================
+// END CONFIGURATION
+// ========================================
+
+/* ---------- Sticker loading (graceful fallback) ---------- */
+function loadSticker(elId, path, fallbackEmoji){
+  const el = document.getElementById(elId);
+  if(!el || !path) return;
+  const img = new Image();
+  img.onload = () => { el.innerHTML = ''; el.appendChild(img); img.alt = ''; };
+  img.onerror = () => { /* keep fallback emoji already in markup, or set one */
+    if(fallbackEmoji && !el.querySelector('.sticker-fallback')){
+      el.innerHTML = '<span class="sticker-fallback">'+fallbackEmoji+'</span>';
+    }
+  };
+  img.src = path;
+}
+loadSticker('stickerLock', stickers.lock, '🔐');
+loadSticker('stickerGift', stickers.gift, '🎁');
+loadSticker('stickerNo', stickers.noReaction, '🥺');
+loadSticker('stickerPenguin', stickers.penguin, '🐧');
+loadSticker('stickerHero', stickers.hero, '🎀');
+loadSticker('stickerMessage', stickers.romantic, '💌');
+loadSticker('stickerRomantic', stickers.romantic, '💗');
+loadSticker('stickerFinal', stickers.final, '✨');
+
+/* ---------- EmailJS init (done early so the NO-flow reason can be sent right away) ---------- */
+try{
+  if(window.emailjs && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY'){
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+  }
+}catch(err){ console.warn('EmailJS init skipped:', err); }
+
+/* ---------- Ambient floating background ---------- */
+(function ambientBackground(){
+  const layer = document.getElementById('ambientLayer');
+  // Weighted so flower petals dominate, with hearts/sparkles sprinkled in.
+  const items = ['🌸','🌸','🌸','🌺','🌺','🌼','❤️','✨','💗','🌟'];
+  const count = window.innerWidth < 600 ? 16 : 28;
+  for(let i=0;i<count;i++){
+    const span = document.createElement('span');
+    span.className = 'ambient-item';
+    span.textContent = items[Math.floor(Math.random()*items.length)];
+    const size = 14 + Math.random()*20;
+    span.style.fontSize = size + 'px';
+    span.style.opacity = (0.55 + Math.random()*0.35).toFixed(2);
+    span.style.left = Math.random()*100 + 'vw';
+    span.style.setProperty('--drift', (Math.random()*120-60)+'px');
+    const dur = 10 + Math.random()*12;
+    span.style.animationDuration = dur + 's';
+    span.style.animationDelay = (Math.random()*dur) + 's';
+    layer.appendChild(span);
+  }
+})();
+
+/* ---------- Background music (hidden Spotify embed) ---------- */
+let spotifyController = null;
+let spotifyReady = false;
+let spotifyPendingPlay = false;
+let spotifyMusicStarted = false;
+let spotifyDuration = 0;
+
+window.onSpotifyIframeApiReady = (IFrameAPI) => {
+  if(!SPOTIFY_TRACK_URI) return;
+  const element = document.getElementById('spotifyMusicPlayer');
+  const options = { uri: SPOTIFY_TRACK_URI, width: '1', height: '1' };
+  IFrameAPI.createController(element, options, (EmbedController) => {
+    spotifyController = EmbedController;
+    spotifyReady = true;
+
+    EmbedController.addListener('playback_update', (e) => {
+      if(e.data && e.data.duration) spotifyDuration = e.data.duration;
+      // Loop: when the track reaches its end, seek back to 0 and resume.
+      if(spotifyDuration && e.data.position >= spotifyDuration - 400 && e.data.isPaused){
+        EmbedController.seek(0);
+        EmbedController.resume();
+      }
+    });
+
+    EmbedController.addListener('ready', () => {
+      if(spotifyPendingPlay){ EmbedController.play(); }
+    });
+
+    if(spotifyPendingPlay){ EmbedController.play(); }
+  });
+};
+
+function startBackgroundMusic(){
+  if(spotifyMusicStarted) return;
+  if(spotifyReady && spotifyController){
+    spotifyController.play();
+    spotifyMusicStarted = true;
+    document.removeEventListener('click', startBackgroundMusic);
+    document.removeEventListener('touchstart', startBackgroundMusic);
+  } else {
+    spotifyPendingPlay = true;
+  }
+}
+// Browsers require a user gesture before audio can play. Keep listening (not "once")
+// until playback actually starts, since the first click may land before the player is ready.
+document.addEventListener('click', startBackgroundMusic);
+document.addEventListener('touchstart', startBackgroundMusic);
+
+/* Mute button */
+const muteBtn = document.getElementById('muteBtn');
+let isMuted = false;
+muteBtn.addEventListener('click', ()=>{
+  isMuted = !isMuted;
+  muteBtn.textContent = isMuted ? '🔇' : '🔊';
+  if(!spotifyController) return;
+  try{
+    if(typeof spotifyController.setVolume === 'function'){
+      spotifyController.setVolume(isMuted ? 0 : 1);
+    } else if(isMuted){
+      spotifyController.pause();
+    } else {
+      spotifyController.resume();
+    }
+  }catch(err){ console.warn('Could not toggle Spotify volume:', err); }
+});
+
+/* ---------- Lightweight confetti ---------- */
+function burstConfetti(count){
+  count = count || 40;
+  const colors = ['#E75C77','#FFB9CB','#FFCDA6','#E4B454','#9B7EDE','#ffffff'];
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'position:fixed; inset:0; pointer-events:none; z-index:9999; overflow:hidden;';
+  document.body.appendChild(wrap);
+  for(let i=0;i<count;i++){
+    const p = document.createElement('div');
+    const size = 6 + Math.random()*8;
+    p.style.cssText = `position:absolute; top:-20px; left:${Math.random()*100}vw; width:${size}px; height:${size*0.4}px;
+      background:${colors[Math.floor(Math.random()*colors.length)]}; opacity:.9; border-radius:2px;
+      transform:rotate(${Math.random()*360}deg);`;
+    const fall = 2.2 + Math.random()*1.6;
+    p.animate([
+      { transform:`translateY(0) rotate(0deg)`, opacity:1 },
+      { transform:`translateY(100vh) rotate(${360+Math.random()*360}deg)`, opacity:0.9 }
+    ], { duration: fall*1000, easing:'cubic-bezier(.3,.6,.7,1)' });
+    wrap.appendChild(p);
+  }
+  setTimeout(()=> wrap.remove(), 4200);
+}
+
+/* ---------- Screen transitions ---------- */
+function switchScreen(fromEl, toEl){
+  if(fromEl){
+    fromEl.classList.add('fade-out');
+    setTimeout(()=>{
+      fromEl.classList.remove('active','fade-out');
+      toEl.classList.add('active','fade-in');
+      window.scrollTo({top:0, behavior:'smooth'});
+      setTimeout(()=> toEl.classList.remove('fade-in'), 700);
+    }, 420);
+  } else {
+    toEl.classList.add('active','fade-in');
+  }
+}
+
+/* ============================================================
+   1. LOCK SCREEN LOGIC
+   ============================================================ */
+const birthdayInput = document.getElementById('birthdayInput');
+const lockFeedback = document.getElementById('lockFeedback');
+const lockCard = document.querySelector('#lockScreen .glass-card');
+const unlockBtn = document.getElementById('unlockBtn');
+
+birthdayInput.addEventListener('input', (e)=>{
+  let digits = e.target.value.replace(/[^0-9]/g,'').slice(0,4);
+  let formatted = digits;
+  if(digits.length > 2){
+    formatted = digits.slice(0,2) + '-' + digits.slice(2);
+  }
+  e.target.value = formatted;
+});
+
+const wrongMessages = [
+  "Hmm... that's not it. 👀",
+  "Nope 😏 Try again.",
+  "Come on, Titiksha... you know this one. ❤️",
+  "Try again, birthday girl. 💗",
+  "Almost? Maybe not 😂❤️"
+];
+
+function attemptUnlock(){
+  const val = birthdayInput.value.trim();
+  if(val === CORRECT_BIRTHDAY){
+    lockFeedback.style.color = '#2c8a5b';
+    lockFeedback.textContent = "I knew you'd get it right. 😌❤️";
+    burstConfetti(50);
+    unlockBtn.disabled = true;
+    setTimeout(()=>{
+      lockFeedback.textContent = "Okay Titiksha... your surprise is ready. ✨";
+    }, 900);
+    setTimeout(()=>{
+      switchScreen(document.getElementById('lockScreen'), document.getElementById('giftScreen'));
+    }, 2000);
+  } else {
+    lockCard.classList.remove('shake'); void lockCard.offsetWidth; lockCard.classList.add('shake');
+    lockFeedback.style.color = '#C93F5C';
+    lockFeedback.textContent = wrongMessages[Math.floor(Math.random()*wrongMessages.length)];
+    birthdayInput.value = '';
+    birthdayInput.focus();
+  }
+}
+unlockBtn.addEventListener('click', attemptUnlock);
+birthdayInput.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') attemptUnlock(); });
+
+/* ============================================================
+   2. GIFT QUESTION LOGIC
+   ============================================================ */
+const giftScreen = document.getElementById('giftScreen');
+const penguinScreen = document.getElementById('penguinScreen');
+const yesBtn = document.getElementById('yesBtn');
+const noBtn = document.getElementById('noBtn');
+const giftFeedback = document.getElementById('giftFeedback');
+const giftBoxAnim = document.getElementById('giftBoxAnim');
+const noModalOverlay = document.getElementById('noModalOverlay');
+const tryAgainBtn = document.getElementById('tryAgainBtn');
+const noReasonInput = document.getElementById('noReasonInput');
+const noReasonStatus = document.getElementById('noReasonStatus');
+
+let lastNoReason = "";
+let noClickCount = 0;
+const noButtonTexts = ["NO 🙈", "Are you sure? 🥺", "Really? 😭", "Titiksha pls... 😭❤️"];
+
+yesBtn.addEventListener('click', ()=>{
+  burstConfetti(45);
+  giftBoxAnim.classList.add('opened');
+  giftBoxAnim.textContent = '🎉';
+  giftFeedback.style.color = '#2c8a5b';
+  giftFeedback.textContent = "I knew you'd say yes. 🥹❤️";
+  setTimeout(()=>{ giftFeedback.textContent = "Okay... your surprise is waiting for you. ✨"; }, 1000);
+  setTimeout(()=>{
+    switchScreen(giftScreen, penguinScreen);
+  }, 2100);
+});
+
+noBtn.addEventListener('click', ()=>{
+  noClickCount++;
+  const idx = Math.min(noClickCount, noButtonTexts.length - 1);
+  noBtn.textContent = noButtonTexts[idx];
+  noBtn.classList.remove('no-btn-wobble'); void noBtn.offsetWidth; noBtn.classList.add('no-btn-wobble');
+  noModalOverlay.classList.add('active');
+  noReasonInput.focus();
+});
+
+function closeNoModalAndReset(){
+  noModalOverlay.classList.remove('active');
+  noReasonInput.value = '';
+  noBtn.textContent = noButtonTexts[0];
+  noReasonStatus.textContent = '';
+  noReasonStatus.className = 'form-status';
+}
+
+tryAgainBtn.addEventListener('click', ()=>{
+  const reason = noReasonInput.value.trim();
+  lastNoReason = reason;
+
+  // Nothing typed — keep existing behavior exactly, no email sent.
+  if(!reason){
+    closeNoModalAndReset();
+    return;
+  }
+
+  // Something typed — send it to Anuj via EmailJS before closing.
+  if(!window.emailjs || EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY'){
+    console.warn('EmailJS not configured — "no" reason was not emailed:', reason);
+    closeNoModalAndReset();
+    return;
+  }
+
+  tryAgainBtn.disabled = true;
+  const originalLabel = tryAgainBtn.textContent;
+  tryAgainBtn.textContent = 'Sending... 💌';
+  noReasonStatus.className = 'form-status';
+  noReasonStatus.textContent = '';
+
+  emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+    to_email: ANUJ_EMAIL,
+    to_name: 'Anuj',
+    from_name: 'Titiksha',
+    birthday_message: '',
+    website_link: window.location.href,
+    no_reason: reason
+  }).then(()=>{
+    tryAgainBtn.disabled = false;
+    tryAgainBtn.textContent = originalLabel;
+    closeNoModalAndReset();
+  }).catch((err)=>{
+    console.warn('Could not email the "no" reason:', err);
+    tryAgainBtn.disabled = false;
+    tryAgainBtn.textContent = originalLabel;
+    noReasonStatus.classList.add('err');
+    noReasonStatus.textContent = 'Oops! Something went wrong. Please try again. 💗';
+  });
+});
+
+/* ============================================================
+   3. PENGUIN GIFTS LOGIC
+   ============================================================ */
+let openedGifts = { gift1:false, gift2:false, gift3:false };
+
+const giftContent = {
+  gift1: {
+    title: "A Little Message For You 💌",
+    render: () => `
+      <h2 id="giftModalTitle" style="font-size:1.35rem; margin-bottom:14px;">A Little Message For You 💌</h2>
+      <p class="subtitle" style="font-weight:700;">Hey Titiksha ❤️</p>
+      <p class="letter-card" style="margin-top:10px;">Happy Birthday to someone who makes ordinary moments feel a little more special.
+
+I hope today brings you the same happiness, smiles, and warmth that you bring to the people around you.
+
+You deserve all the beautiful things life has to offer.
+
+Keep smiling, keep shining, and most importantly, keep being the amazing person you are.
+
+I'm really glad I get to know someone like you. ❤️
+
+Happy Birthday, Titiksha. ✨</p>
+      <p class="signature">With lots of love,<br>Anuj ❤️</p>
+      <div class="btn-row"><button class="btn btn-primary close-gift-btn" data-gift="gift1">Close Gift 💗</button></div>
+    `
+  },
+  gift2: {
+    title: "Reasons to Smile ❤️",
+    render: () => `
+      <h2 id="giftModalTitle" style="font-size:1.2rem; margin-bottom:6px;">Gift 2 is a little different... 👀</h2>
+      <p class="subtitle">Here's something I hope you never run out of:</p>
+      <div class="big-heart">❤️</div>
+      <h3 style="margin:12px 0 6px; color:var(--rose-deep);">Reasons to Smile ❤️</h3>
+      <div class="reason-cards">
+        <div>Your smile. 😊</div>
+        <div>Your laugh. 😂❤️</div>
+        <div>Your random little moments. ✨</div>
+        <div>The way you make ordinary moments special. 🌸</div>
+      </div>
+      <p class="subtitle" style="font-weight:700;">Basically... you. ❤️</p>
+      <div class="btn-row"><button class="btn btn-primary close-gift-btn" data-gift="gift2">Close Gift 💗</button></div>
+    `
+  },
+  gift3: {
+    title: "Happy Birthday, Titiksha. ❤️",
+    render: () => `
+      <h2 id="giftModalTitle" style="font-size:1.2rem; margin-bottom:6px;">Okay... this is the last one. 👀❤️</h2>
+      <p class="subtitle">I saved this one for last.</p>
+      <p class="subtitle">I don't know what the future holds...</p>
+      <p class="subtitle">...but I'm really happy that you're a part of my present. ❤️</p>
+      <p class="subtitle">And I hope we get to make a lot more memories together.</p>
+      <h2 style="margin:14px 0 4px; color:var(--rose-deep);">Happy Birthday, Titiksha. ❤️</h2>
+      <p class="signature">— Anuj</p>
+      <div class="btn-row"><button class="btn btn-primary close-gift-btn" data-gift="gift3">Close Gift 💗</button></div>
+    `
+  }
+};
+
+const giftModalOverlay = document.getElementById('giftModalOverlay');
+const giftModalBox = document.getElementById('giftModalBox');
+const revealClueBtn = document.getElementById('revealClueBtn');
+const giftHint = document.getElementById('giftHint');
+
+document.querySelectorAll('.penguin-card').forEach(card=>{
+  function openIt(){
+    const key = card.dataset.gift;
+    giftModalBox.innerHTML = giftContent[key].render();
+    giftModalOverlay.classList.add('active');
+    burstConfetti(28);
+    giftModalBox.querySelector('.close-gift-btn').addEventListener('click', ()=>{
+      giftModalOverlay.classList.remove('active');
+      markGiftOpened(key, card);
+    });
+  }
+  card.addEventListener('click', openIt);
+  card.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); openIt(); } });
+});
+
+function markGiftOpened(key, card){
+  if(openedGifts[key]) return;
+  openedGifts[key] = true;
+  card.classList.add('opened');
+  const pillMap = { gift1:'pillGift1', gift2:'pillGift2', gift3:'pillGift3' };
+  document.getElementById(pillMap[key]).classList.add('done');
+  document.getElementById(pillMap[key]).textContent = pillMap[key].replace('pill','Gift ').replace('Gift1','1').replace('Gift2','2').replace('Gift3','3') + ' ✓';
+  checkAllGiftsOpened();
+}
+
+function checkAllGiftsOpened(){
+  if(openedGifts.gift1 && openedGifts.gift2 && openedGifts.gift3){
+    giftHint.style.display = 'none';
+    revealClueBtn.style.display = 'inline-flex';
+  }
+}
+
+revealClueBtn.addEventListener('click', ()=>{
+  switchScreen(penguinScreen, document.getElementById('mysteryScreen'));
+  setTimeout(startMysteryReveal, 900);
+});
+
+/* ============================================================
+   4. FINAL MYSTERY LOGIC
+   ============================================================ */
+const mysteryPre1 = document.getElementById('mysteryPre1');
+const mysteryText = document.getElementById('mysteryText');
+const mysteryBtnRow = document.getElementById('mysteryBtnRow');
+const knowWhoBtn = document.getElementById('knowWhoBtn');
+const mysteryFollowUp = document.getElementById('mysteryFollowUp');
+const continueToMainBtn = document.getElementById('continueToMainBtn');
+
+const mysteryLines = [
+  "Okay, tiny mystery for you. 🕵️‍♀️✨",
+  "There's a certain girl who somehow has this weird superpower…",
+  "She can make someone smile without even trying, make random conversations unexpectedly memorable, and somehow occupy a tiny corner of someone's mind for absolutely no reason. 😶‍🌫️",
+  "And the funniest part?",
+  "She probably has <strong>no idea</strong> she has this superpower. 😂",
+  "So here's your clue:",
+  "<strong>She's cute, genuinely special, and completely unaware of the effect she has on someone.</strong>",
+  "Now comes the difficult part…",
+  "<strong>Figure out who she is. 👀💗</strong>"
+];
+
+let mysteryStarted = false;
+function startMysteryReveal(){
+  if(mysteryStarted) return;
+  mysteryStarted = true;
+  mysteryPre1.textContent = "Wait... you opened all three. 👀";
+  setTimeout(()=>{
+    mysteryPre1.textContent = "Looks like you've earned one last clue... 🕵️‍♀️✨";
+  }, 1600);
+
+  setTimeout(()=>{
+    mysteryLines.forEach((line, i)=>{
+      setTimeout(()=>{
+        const p = document.createElement('p');
+        p.className = 'mystery-line';
+        p.style.marginBottom = '10px';
+        p.innerHTML = line;
+        mysteryText.appendChild(p);
+        requestAnimationFrame(()=> p.classList.add('shown'));
+        if(i === mysteryLines.length - 1){
+          setTimeout(()=>{ mysteryBtnRow.style.display = 'flex'; }, 700);
+        }
+      }, i * 1500);
+    });
+  }, 3200);
+}
+
+knowWhoBtn.addEventListener('click', ()=>{
+  mysteryBtnRow.style.display = 'none';
+  mysteryFollowUp.style.display = 'block';
+  burstConfetti(20);
+});
+
+continueToMainBtn.addEventListener('click', ()=>{
+  const mysteryScreenEl = document.getElementById('mysteryScreen');
+  mysteryScreenEl.classList.add('fade-out');
+  setTimeout(()=>{
+    mysteryScreenEl.classList.remove('active','fade-out');
+    const main = document.getElementById('mainWebsite');
+    main.classList.add('active');
+    window.scrollTo({top:0, behavior:'smooth'});
+    burstConfetti(60);
+    initMainWebsite();
+  }, 450);
+});
+
+/* ============================================================
+   5. MAIN WEBSITE LOGIC
+   ============================================================ */
+let mainInitialized = false;
+function initMainWebsite(){
+  if(mainInitialized) return;
+  mainInitialized = true;
+
+  /* Scroll reveal */
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){ entry.target.classList.add('in-view'); }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el=> io.observe(el));
+
+  /* Background music (hidden YouTube embed, starts on first tap/click) */
+
+  /* Review form */
+  const reviewForm = document.getElementById('reviewForm');
+  const reviewStatus = document.getElementById('reviewStatus');
+  const reviewSubmitBtn = document.getElementById('reviewSubmitBtn');
+  reviewForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('reviewName').value.trim();
+    const message = document.getElementById('reviewMessage').value.trim();
+    if(!message) return;
+
+    reviewStatus.className = 'form-status';
+    reviewStatus.textContent = '';
+
+    if(!window.emailjs || EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY'){
+      reviewStatus.classList.add('err');
+      reviewStatus.textContent = "Email sending isn't configured yet, but your review is saved right here on the page. 💗";
+      return;
+    }
+
+    reviewSubmitBtn.disabled = true;
+    const originalLabel = reviewSubmitBtn.textContent;
+    reviewSubmitBtn.textContent = 'Sending... 💌';
+
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+      to_email: ANUJ_EMAIL,
+      to_name: 'Anuj',
+      from_name: name || 'Titiksha',
+      birthday_message: '',
+      website_link: window.location.href,
+      no_reason: '',
+      review: message
+    }).then(()=>{
+      reviewSubmitBtn.disabled = false;
+      reviewSubmitBtn.textContent = originalLabel;
+      reviewStatus.classList.add('ok');
+      reviewStatus.textContent = 'Sent! 🎉 Thank you for the review.';
+      reviewForm.reset();
+    }).catch((err)=>{
+      console.warn('EmailJS review error:', err);
+      reviewSubmitBtn.disabled = false;
+      reviewSubmitBtn.textContent = originalLabel;
+      reviewStatus.classList.add('err');
+      reviewStatus.textContent = 'Oops! Something went wrong. Please try again. 💗';
+    });
+  });
+
+  /* One more thing */
+  const oneMoreCard = document.getElementById('oneMoreThingCard');
+  const oneMoreReveal = document.getElementById('oneMoreReveal');
+  const oneMoreHint = document.getElementById('oneMoreHint');
+  oneMoreCard.addEventListener('click', ()=>{
+    oneMoreReveal.classList.toggle('shown');
+    oneMoreHint.style.display = oneMoreReveal.classList.contains('shown') ? 'none' : 'block';
+    if(oneMoreReveal.classList.contains('shown')) burstConfetti(24);
+  });
+}
+</script>
+</body>
+</html>
